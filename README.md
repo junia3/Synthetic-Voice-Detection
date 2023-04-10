@@ -51,14 +51,14 @@ Or you can just download LA.zip file with following command(recommended).
 
 ```bash
 curl -o LA.zip https://datashare.ed.ac.uk/bitstream/handle/10283/3336/LA.zip?sequence=3&isAllowed=y
-mkdir dataset
-unzip LA.zip -d dataset
+unzip LA.zip -d datasets
 ```
 
 Then, your repository will have following structure.
 ```bash
 Synthetic-Speech-Detection
-├── dataset
+├── datasets
+│   ├── dataset.py
 │   ├── LA
 │   │    ├── ASVspoof2019_LA_asv_protocols
 │   │    ├── ASVspoof2019_LA_asv_scores
