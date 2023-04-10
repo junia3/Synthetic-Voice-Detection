@@ -12,10 +12,10 @@
 # Members
 
 <p align="center"> <b>
-</br> &nbsp; 박준영, YAI 9th
-</br> &nbsp; 변지혁, YAI 9th
-</br> &nbsp; 주다윤, YAI 10th
-</br> &nbsp; 김강현, YAI 10th
+</br> &nbsp; 🤗 박준영, YAI 9th
+</br> &nbsp; 👤 변지혁, YAI 8th
+</br> &nbsp; 👤 주다윤, YAI 10th
+</br> &nbsp; 👤 김강현, YAI 10th
 </b></p> 
 
 ---
