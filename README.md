@@ -22,7 +22,7 @@
 
 ### Make conda environment with following commands
 ```bash
-conda env create -n ssd python==3.8
+conda create -n ssd python=3.8
 conda activate ssd
 pip install ipykernel # Optional
 python -m ipykernel install --user --name ssd --display-name ssd # Optional
