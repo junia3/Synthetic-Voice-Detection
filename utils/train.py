@@ -3,6 +3,7 @@ from torch.utils.data import DataLoader
 from datasets.dataset import collate_fn
 from tqdm import tqdm
 import torch
+import torch.nn.functional as F
 from evaluation_metric import compute_eer
 
 def trainer(model, train_dataset, val_dataset, learning_rate, criterion, optimizer, scheduler, epochs, batch_size=64, exp_name="baseline", device='cpu'):
