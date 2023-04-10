@@ -18,17 +18,57 @@
 </br> &nbsp; 김강현, YAI 10th
 </b></p> 
 
+---
+
 # Requirements setting
 
-### Make conda environment with following commands
+### Cloning repository
+```bash
+git clone https://github.com/junia3/Synthetic-Speech-Detection.git
+cd Synthetic-Speech-Detection
+```
+
+### Create conda environment with following commands
 ```bash
 conda create -n ssd python=3.8
 conda activate ssd
 pip install ipykernel # Optional
 python -m ipykernel install --user --name ssd --display-name ssd # Optional
 ```
-
 Actually, you do not need to add environment kernel for jupyter notebook(optional)
+
+### Install python requirements
+
+```bash
+conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+pip install spafe matplotlib soundfile tqdm torchsummary
+```
+---
+
+# Download dataset
+This project basically use ASVspoof-2019 dataset, which can be downloaded on [this page](https://datashare.ed.ac.uk/handle/10283/3336).
+Or you can just download LA.zip file with following command(recommended).
+
+```bash
+curl -o LA.zip https://datashare.ed.ac.uk/bitstream/handle/10283/3336/LA.zip?sequence=3&isAllowed=y
+mkdir dataset
+unzip LA.zip -d dataset
+```
+
+Then, your repository will have following structure.
+```bash
+Synthetic-Speech-Detection
+├── dataset
+│   ├── LA
+│   │    ├── ASVspoof2019_LA_asv_protocols
+│   │    ├── ASVspoof2019_LA_asv_scores
+│   │    ├── ...
+``` 
+
+---
+
+# Dataset
+
 
 
 ![footer](https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=150&section=footer&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40)
