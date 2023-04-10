@@ -70,5 +70,9 @@ Synthetic-Speech-Detection
 # Dataset
 Detailed implementation is written on [dataset page](./datasets).
 
+---
+
+# Train baseline
+Check file 'baseline.ipynb'
 
 ![footer](https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=150&section=footer&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40)
