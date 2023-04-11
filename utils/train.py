@@ -1,14 +1,23 @@
 import os
 from torch.utils.data import DataLoader
+import torch.nn.functional as F
 from datasets.dataset import collate_fn
 from tqdm import tqdm
 import torch
-import torch.nn.functional as F
 from evaluation_metric import compute_eer
+from .plot import visualize_logs
 
 def trainer(model, train_dataset, val_dataset, learning_rate, criterion, optimizer, scheduler, epochs, batch_size=64, exp_name="baseline", device='cpu'):
     # Make directory to save pre-trained weights
     os.makedirs(f"checkpoint/{exp_name}", exist_ok=True)
+
+    # Log dictionary
+    log_dict = {
+        "Loss" : {"training" : [], "validation" : []},
+        "Mean accuracy" : {"training" : [], "validation" : []},
+        "Real accuracy" : {"training" : [], "validation" : []},
+        "Fake accuracy" : {"training" : [], "validation" : []}
+    }
 
     # Make dataloader
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
@@ -53,7 +62,13 @@ def trainer(model, train_dataset, val_dataset, learning_rate, criterion, optimiz
             loading.set_description(f"Loss : {train_loss/(i+1):.4f}, Acc : {100*train_acc/(i+1):.4f}% \
                     (Real : {100*real_acc/(i+1):.4f}%, Fake : {100*fake_acc/(i+1):.4f}%)")
         
+        # Append log information
+        log_dict["Loss"]["training"].append(train_loss/len(train_dataloader))
+        log_dict["Mean accuracy"]["training"].append(train_acc/len(train_dataloader))
+        log_dict["Real accuracy"]["training"].append(real_acc/len(train_dataloader))
+        log_dict["Fake accuracy"]["training"].append(fake_acc/len(train_dataloader))
         scheduler.step()
+
         print(f"Validating ... [Epoch {epoch+1}/{epochs}]")
         model.eval()
         with torch.no_grad():
@@ -92,7 +107,13 @@ def trainer(model, train_dataset, val_dataset, learning_rate, criterion, optimiz
                     
                 loading.set_description(f"Loss : {val_loss/(i+1):.4f}, Acc : {100*val_acc/(i+1):.4f}% \
                     (Real : {100*real_acc/(i+1):.4f}%, Fake : {100*fake_acc/(i+1):.4f}%)")
-        
+
+            # Append log information
+            log_dict["Loss"]["validation"].append(val_loss/len(val_dataloader))
+            log_dict["Mean accuracy"]["validation"].append(val_acc/len(val_dataloader))
+            log_dict["Real accuracy"]["validation"].append(val_acc/len(val_dataloader))
+            log_dict["Fake accuracy"]["validation"].append(val_acc/len(val_dataloader))
+
             # Calculate EER
             scores = torch.cat(score_loader, 0).data.cpu().numpy()
             labels = torch.cat(idx_loader, 0).data.cpu().numpy()
@@ -105,3 +126,6 @@ def trainer(model, train_dataset, val_dataset, learning_rate, criterion, optimiz
                 # Save the model checkpoint
                 torch.save(model, os.path.join(f"checkpoint/{exp_name}", 'best_model.pt'))
                 prev_eer = val_eer
+        
+        # Plot log graph and save file
+        visualize_logs(log_dict, exp_name=exp_name)
