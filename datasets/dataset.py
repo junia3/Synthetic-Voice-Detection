@@ -70,15 +70,15 @@ class LADataset(Dataset):
         # (1) Bring annotation from txtfile
         if txtpath is None:
             if split == "train":
-                txtpath = f"LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trn.txt"
+                txtpath = os.path.abspath(f"./LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trl.txt")
             else:
-                txtpath = f"LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trl.txt"
-                
+                txtpath = os.path.abspath(f"./LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trl.txt")
+
         assert os.path.isfile(txtpath), "Please check annotation file"
 
         # (2) Bring dataset directory
         if datadir is None:
-            datadir = f"LA/ASVspoof2019_LA_{split}"
+            datadir = f"./LA/ASVspoof2019_LA_{split}"
         assert os.path.isdir(datadir), "Please check ASVspoof dataset"
 
         # (3) List-up proper dataset
@@ -244,7 +244,7 @@ class LADataset(Dataset):
                 raise ValueError('Zero padding or Repeat padding is available')
 
         if ("cc" in self.transforms or "lp" in self.transforms) and self.expand:
-            feature = np.repeat(np.expand_dims(feature[:, 0], axis=1), 20, axis=0)
+            feature = np.repeat(np.expand_dims(feature[:, 0], axis=1), 20, axis=1)
 
         return torch.FloatTensor(feature).unsqueeze(0), label
 
