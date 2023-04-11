@@ -1,4 +1,11 @@
 # Feature extraction for audio file
+### Prepare audio sample
+
+<audio controls>
+    <source src='./assets/test.wav'>
+</audio>
+
+---
 
 ### 1-1. Linear spectrogram
 
