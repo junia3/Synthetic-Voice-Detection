@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=0:008B8B,100:8A2BE2&height=250&section=header&text=Synthetic%20Speech%20Detection&fontSize=45&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40)
+![header](https://capsule-render.vercel.app/api?type=waving&color=0:FF7F50,50:008B8B,100:8A2BE2&height=250&section=header&text=Synthetic%20Speech%20Detection&fontSize=45&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40)
 <!-- 
 <p align="center"><a href="#">
     <img src="https://capsule-render.vercel.app/api?type=waving&color=0:F9D976,100:F39F86&height=250&section=header&text="Synthetic speech detection" &fontSize=40&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40" alt="header" />
@@ -75,4 +75,4 @@ Detailed implementation is written on [dataset page](./datasets).
 # Train baseline
 Check file 'baseline.ipynb'
 
-![footer](https://capsule-render.vercel.app/api?type=waving&color=0:008B8B,100:8A2BE2&height=150&section=footer&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40)
+![footer](https://capsule-render.vercel.app/api?type=waving&color=0:FF7F50,50:008B8B,100:8A2BE2&height=150&section=footer&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40)
