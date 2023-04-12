@@ -92,8 +92,6 @@ def trainer(model, train_dataset, val_dataset, optimizer, scheduler, epochs, bat
             val_loss, val_acc = 0.0, 0.0
             real_acc, fake_acc = 0.0, 0.0
             for i, (inputs, targets) in loading:
-                # Train mode
-                model.train()
                 inputs, labels = inputs.to(device), targets['label'].to(device)
 
                 # Calculate output
