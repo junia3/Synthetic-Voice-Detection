@@ -6,8 +6,9 @@ from tqdm import tqdm
 import torch
 from evaluation_metric import compute_eer
 from .plot import visualize_logs
+from .loss import build_loss_func, compute_loss
 
-def trainer(model, train_dataset, val_dataset, learning_rate, criterion, optimizer, scheduler, epochs, batch_size=64, exp_name="baseline", device='cpu'):
+def trainer(model, train_dataset, val_dataset, optimizer, scheduler, epochs, batch_size=64, loss_opt='ce', exp_name="baseline", device='cpu'):
     # Make directory to save pre-trained weights
     os.makedirs(f"checkpoint/{exp_name}", exist_ok=True)
 
@@ -19,9 +20,18 @@ def trainer(model, train_dataset, val_dataset, learning_rate, criterion, optimiz
         "Fake accuracy" : {"training" : [], "validation" : []}
     }
 
-    # Make dataloader
+    # Build dataloader
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
     val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
+
+    # Build loss func
+    if loss_opt in ['ce']:
+        loss_func = build_loss_func(loss_opt=loss_opt, device=device)
+    else:
+        cls_num_dict = train_dataset.get_cls_num()
+        train_dataset.log_cls_num(cls_num_dict)
+        loss_func = build_loss_func(loss_opt=loss_opt, device=device, cls_num_list=cls_num_dict["label"])
+
     prev_eer = 1e8
     for epoch in range(epochs):
         loading = tqdm(enumerate(train_dataloader))
@@ -37,7 +47,7 @@ def trainer(model, train_dataset, val_dataset, learning_rate, criterion, optimiz
 
             # Zero grad optimizer
             optimizer.zero_grad()
-            loss = criterion(probs, labels)
+            loss = compute_loss(loss_func, probs, labels)
             loss.backward()
 
             # Gradient descent
@@ -83,7 +93,7 @@ def trainer(model, train_dataset, val_dataset, learning_rate, criterion, optimiz
 
                 # Calculate output
                 features, probs = model(inputs)
-                loss = criterion(probs, labels)
+                loss = compute_loss(loss_func, probs, labels)
 
                 # Log informations
                 score = F.softmax(probs, dim=1)[:, 0]
