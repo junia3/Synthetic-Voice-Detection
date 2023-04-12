@@ -5,7 +5,7 @@ from datasets.dataset import collate_fn
 from tqdm import tqdm
 import torch
 from evaluation_metric import compute_eer
-from .plot import visualize_logs
+from .viz import visualize_logs
 from .loss import build_loss_func, compute_loss
 
 def trainer(model, train_dataset, val_dataset, optimizer, scheduler, epochs, batch_size=64, loss_opt='ce', exp_name="baseline", device='cpu'):
