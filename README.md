@@ -5,7 +5,7 @@
 </a></p>
  -->
 
-<p align="center"; font-size=24px><b>This project implemented with YAI members for YAICON 2nd Season</b></p>
+<p align="center"; font-size=24px><b>This project implemented with YAI members for 2nd YAICON</b></p>
 
 ---
 
