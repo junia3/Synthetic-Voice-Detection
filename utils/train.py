@@ -7,10 +7,15 @@ import torch
 from evaluation_metric import compute_eer
 from .viz import visualize_logs
 from .loss import build_loss_func, compute_loss
+from torchsummary import summary
 
 def trainer(model, train_dataset, val_dataset, optimizer, scheduler, epochs, batch_size=64, loss_opt='ce', exp_name="baseline", device='cpu'):
     # Make directory to save pre-trained weights
     os.makedirs(f"checkpoint/{exp_name}", exist_ok=True)
+
+    # Summarize model
+    input_size = train_dataset[0][0].shape
+    summary(model, input_size, batch_size=batch_size)
 
     # Log dictionary
     log_dict = {
