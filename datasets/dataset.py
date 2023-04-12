@@ -70,15 +70,15 @@ class LADataset(Dataset):
         # (1) Bring annotation from txtfile
         if txtpath is None:
             if split == "train":
-                txtpath = os.path.abspath(f"./LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trl.txt")
+                txtpath = os.path.abspath(f"LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trl.txt")
             else:
-                txtpath = os.path.abspath(f"./LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trl.txt")
+                txtpath = os.path.abspath(f"LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trl.txt")
 
         assert os.path.isfile(txtpath), "Please check annotation file"
 
         # (2) Bring dataset directory
         if datadir is None:
-            datadir = f"./LA/ASVspoof2019_LA_{split}"
+            datadir = f"LA/ASVspoof2019_LA_{split}"
         assert os.path.isdir(datadir), "Please check ASVspoof dataset"
 
         # (3) List-up proper dataset
@@ -116,6 +116,40 @@ class LADataset(Dataset):
         assert self.f_len < frame
         s_point = np.random.randint(frame-self.f_len)
         return feature[s_point:s_point+self.f_len, :]
+
+    # Return number of samples
+    def get_cls_num(self):
+        cls_num_dict = {}
+        if self.split == "train":
+            label_list = [0]*len(list(self.label_map.keys()))
+            tag_list = [0]*len(list(self.tag_map.keys()))
+            speaker_list = [0]*len(list(self.speaker_map.keys()))
+            for lbl, tag, spk in zip(self.dataset["label"], self.dataset["tag"], self.dataset["speaker"]):
+                label_list[int(lbl)] += 1
+                tag_list[int(tag)] += 1
+                speaker_list[int(spk)] += 1
+
+            cls_num_dict["label"] = label_list
+            cls_num_dict["tag"] = tag_list
+            cls_num_dict["speaker"] = speaker_list
+
+        else:
+            label_list = []
+            for lbl in self.dataset["label"]:
+                label_list[int(lbl)] += 1
+            
+            cls_num_dict["label"] = label_list
+
+        return cls_num_dict
+
+    # Print number of samples
+    def log_cls_num(self, cls_num_dict):
+        print("====== Number of samples ======")
+        for key, value in cls_num_dict.items():
+            print(f"[{key}]")
+            for i, v in enumerate(value):
+                print(f"\t({i}) : {v} samples")
+        print("===============================")
 
     def __len__(self):
         return len(self.dataset["path"])
