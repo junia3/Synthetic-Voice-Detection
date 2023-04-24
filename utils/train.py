@@ -44,7 +44,7 @@ def trainer(model, train_dataset, val_dataset, optimizer, scheduler, epochs, bat
         real_acc, fake_acc = 0.0, 0.0
         print(f"Training ... [Epoch {epoch+1}/{epochs}]")
         model.train()
-        for i, (inputs, targets) in loading:
+        for i, (inputs, targets, _) in loading:
             inputs, labels = inputs.to(device), targets['label'].to(device)
 
             # Calculate output
@@ -91,7 +91,7 @@ def trainer(model, train_dataset, val_dataset, optimizer, scheduler, epochs, bat
             loading = tqdm(enumerate(val_dataloader))
             val_loss, val_acc = 0.0, 0.0
             real_acc, fake_acc = 0.0, 0.0
-            for i, (inputs, targets) in loading:
+            for i, (inputs, targets, _) in loading:
                 inputs, labels = inputs.to(device), targets['label'].to(device)
 
                 # Calculate output
