@@ -28,7 +28,7 @@ class LADataset(Dataset):
             label : ground truths
     '''
 
-    # (0) Define meta information for training dataset
+    # (0) Define meta information
     speaker_map = {
             'LA_0079': 0, 'LA_0080': 1, 'LA_0081': 2, 'LA_0082': 3, 'LA_0083': 4, 'LA_0084': 5, 'LA_0085': 6,
             'LA_0086': 7, 'LA_0087': 8,
@@ -38,10 +38,11 @@ class LADataset(Dataset):
     }
     tag_map = {"-": 0, "A01": 1, "A02": 2, "A03": 3, "A04": 4, "A05": 5, "A06": 6, "A07": 7, "A08": 8, "A09": 9,
            "A10": 10, "A11": 11, "A12": 12, "A13": 13, "A14": 14, "A15": 15, "A16": 16, "A17": 17, "A18": 18, "A19": 19}
+
     label_map = {"spoof": 1, "bonafide": 0}
 
     def __init__(self, split='train', txtpath=None, datadir=None, transforms=None,
-                 f_len=750, padding='repeat', num_features=20, n_fft=512, w_len=0.02, norm=None, expand=False):
+                 f_len=750, padding='repeat', num_features=20, n_fft=512, w_len=0.02, norm=None, expand=False, speaker=False):
 
         self.transforms = transforms
         # Default setting
@@ -61,6 +62,7 @@ class LADataset(Dataset):
         self.padding = padding
         self.norm = norm
         self.expand = expand
+        self.speaker = speaker
         
         if ("cc" not in self.transforms and "lp" not in self.transforms) and self.expand:
             print("[Warning] : Expanding feature only works on cepstral coefficient methods")
@@ -89,9 +91,10 @@ class LADataset(Dataset):
                 speaker, filename, tag, label = info[0], info[1], info[-2], info[-1]
                 self.dataset["path"].append(os.path.join(datadir, f"flac/{filename}.flac"))
                 self.dataset["label"].append(self.label_map[label])
-                if split=="train":
+                self.dataset["tag"].append(self.tag_map[tag])
+
+                if self.speaker:
                     self.dataset["speaker"].append(self.speaker_map[speaker])
-                    self.dataset["tag"].append(self.tag_map[tag])
 
     # Padeding method with zero
     def _zeropad(self, feature):
@@ -120,7 +123,7 @@ class LADataset(Dataset):
     # Return number of samples
     def get_cls_num(self):
         cls_num_dict = {}
-        if self.split == "train":
+        if self.speaker:
             label_list = [0]*len(list(self.label_map.keys()))
             tag_list = [0]*len(list(self.tag_map.keys()))
             speaker_list = [0]*len(list(self.speaker_map.keys()))
@@ -134,11 +137,14 @@ class LADataset(Dataset):
             cls_num_dict["speaker"] = speaker_list
 
         else:
-            label_list = []
-            for lbl in self.dataset["label"]:
+            label_list = [0]*len(list(self.label_map.keys()))
+            tag_list = [0]*len(list(self.tag_map.keys()))
+            for lbl, tag, spk in zip(self.dataset["label"], self.dataset["tag"], self.dataset["speaker"]):
                 label_list[int(lbl)] += 1
-            
+                tag_list[int(tag)] += 1
+
             cls_num_dict["label"] = label_list
+            cls_num_dict["tag"] = tag_list
 
         return cls_num_dict
 
@@ -158,15 +164,15 @@ class LADataset(Dataset):
         # Load audio and labels from dictionary
         sample_path = self.dataset["path"][idx]
         sample_label = self.dataset["label"][idx]
+        sample_tag = self.dataset["tag"][idx]
 
-        if self.split == "train":
+        if self.speaker:
             sample_speaker = self.dataset["speaker"][idx]
-            sample_tag = self.dataset["tag"][idx]
             label = {"label": sample_label, "tag": sample_tag, "speaker": sample_speaker}
         else:
-            label = {"label": sample_label}
-        
+            label = {"label": sample_label, "tag": sample_tag}
         audio, rate = sf.read(sample_path)
+        
         # Transform audio with feature extraction method
         # (0) Linear spectogram
         if self.transforms == 'lspec':
@@ -280,16 +286,17 @@ class LADataset(Dataset):
         if ("cc" in self.transforms or "lp" in self.transforms) and self.expand:
             feature = np.repeat(np.expand_dims(feature[:, 0], axis=1), 20, axis=1)
 
-        return torch.FloatTensor(feature).unsqueeze(0), label
+        return torch.FloatTensor(feature).unsqueeze(0), label, sample_path
 
 def collate_fn(batch):
     inputs = torch.stack([sample[0] for sample in batch], dim=0)
+    sample_paths = [sample[2] for sample in batch]
     # Make targets as batch of dictionary
     targets = {}
     targets["label"] = torch.LongTensor([sample[1]["label"] for sample in batch])
-    if len(list(batch[0][1].keys())) > 1:
-        targets["tag"] = torch.LongTensor([sample[1]["tag"] for sample in batch])
+    targets["tag"] = torch.LongTensor([sample[1]["tag"] for sample in batch])
+    if len(list(batch[0][1].keys())) > 2:
         targets["speaker"] = torch.LongTensor([sample[1]["speaker"] for sample in batch])
 
     # Return features, targets and original lengths before padding
-    return inputs, targets
+    return inputs, targets, sample_paths
