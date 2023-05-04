@@ -68,19 +68,18 @@ class LADataset(Dataset):
             print("[Warning] : Expanding feature only works on cepstral coefficient methods")
 
         assert self.norm in ['mvn', 'ms', 'vn', 'mn', None], "Unavailable normalization method"
-
         # (1) Bring annotation from txtfile
         if txtpath is None:
             if split == "train":
-                txtpath = os.path.abspath(f"LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trl.txt")
+                txtpath = os.getcwd()+f"/datasets/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trn.txt"
             else:
-                txtpath = os.path.abspath(f"LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trl.txt")
+                txtpath = os.getcwd()+f"/datasets/LA/ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.{split}.trl.txt"
 
         assert os.path.isfile(txtpath), "Please check annotation file"
 
         # (2) Bring dataset directory
         if datadir is None:
-            datadir = f"LA/ASVspoof2019_LA_{split}"
+            datadir = os.getcwd()+f"/datasets/LA/ASVspoof2019_LA_{split}"
         assert os.path.isdir(datadir), "Please check ASVspoof dataset"
 
         # (3) List-up proper dataset
