@@ -11,7 +11,7 @@ from tqdm import tqdm
 import numpy as np
 from datasets.dataset import collate_fn
 
-def test_model(feat_model_path, device):
+def test_model(feat_model_path, exp_name, device):
     dirname = os.path.dirname
     basename = os.path.splitext(os.path.basename(feat_model_path))[0]
     if "checkpoint" in dirname(feat_model_path):
@@ -27,6 +27,7 @@ def test_model(feat_model_path, device):
     test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=False, num_workers=3, collate_fn=collate_fn)
     model.eval()
 
+    dir_path = os.path.join(dir_path, exp_name)
     with open(os.path.join(dir_path, 'checkpoint_cm_score.txt'), 'w') as cm_score_file:
         for i, (inputs, targets, audio_fn) in enumerate(tqdm(test_dataloader)):
             inputs, labels = inputs.to(device), targets["label"].to(device)
@@ -48,9 +49,9 @@ def test_model(feat_model_path, device):
 
     return eer_cm, min_tDCF
 
-def test(model_dir, device):
+def test(model_dir, exp_name, device):
     model_path = os.path.join(model_dir, "best_model.pt")
-    eer_cm, min_tDCF = test_model(model_path, device) 
+    eer_cm, min_tDCF = test_model(model_path, exp_name, device) 
 
 def test_individual_attacks(cm_score_file):
     asv_score_file = os.path.join('/data/Synthetic-Speech-Detection/datasets',
@@ -125,7 +126,8 @@ def test_individual_attacks(cm_score_file):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('-m', '--model_dir', type=str, help="path to the trained model", default="")
+    parser.add_argument('--exp_name', type=str, help="experiment name")
     parser.add_argument("--gpu", type=str, help="GPU index", default="0")
     args = parser.parse_args()
     args.device = torch.device("cuda:{:d}".format(int(args.gpu)) if torch.cuda.is_available() else "cpu")
-    test(args.model_dir, args.device)
+    test(args.model_dir, args.exp_name, args.device)
