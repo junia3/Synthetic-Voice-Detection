@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from datasets.dataset import collate_fn
 from tqdm import tqdm
 import torch
-from evaluation_metric import compute_eer
+from .evaluation_metric import compute_eer
 from .viz import visualize_logs
 from .loss import build_loss_func, compute_loss
 from torchsummary import summary
