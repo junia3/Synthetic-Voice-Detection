@@ -1,3 +1,14 @@
+# Requirements
+Augmentation needs [WavAugment](https://github.com/facebookresearch/WavAugment.git) module.
+
+```bash
+git clone https://github.com/facebookresearch/WavAugment.git
+cd WavAugment
+python setup.py develop
+```
+
+---
+
 # Feature extraction for audio file
 ### Prepare audio sample
 
