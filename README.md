@@ -90,4 +90,6 @@ Check file ['baseline.ipynb'](./baseline.ipynb)
 python service.py
 ```
 
-Be sure you have to 'download' best_model.pt(pretrained model) and locate it on the same directory as ```service.py```
+Be sure you have to 'download' best_model.pt(pretrained model) and locate it on the same directory as ```service.py```   
+
+The front-end web is running on https://127.0.0.1:5000/
