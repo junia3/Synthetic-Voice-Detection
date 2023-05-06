@@ -83,7 +83,7 @@ Check file ['baseline.ipynb'](./baseline.ipynb)
 
 ---
 
-# Front-end demo Web
+# Front-end demo web
 
 ### Implemented with pytorch Flask 
 ```bash
