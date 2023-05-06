@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upload and play audio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+        <h1 class="title">Upload and play audio</h1>
+    </div>
+    <div class="container">
+        <label for="audio-file">Choose an audio file</label>
+        <input type="file" class="audio-button" name="audio-file" id="audio-file">
+        <button type="button" class="upload" onclick="uploadAndPlay()">Upload and play</button><br>
+        <input id="upload-name" value="파일을 선택해주세요" placeholder="첨부파일">
+    </div>
+    <div class="audio-wrapper">
+        <audio controls autoplay id="audio-player"></audio>
+    </div>
+    <div class="container">
+        <button class="infer" onclick="uploadAudio()"> Try Me! </button>
+    </div>
+    <div id="loading-spinner">
+        <img src="https://i.gifer.com/XOsX.gif" width="100">
+    </div>
+    <div class="container" id="resultshow">
+        <div class="row">
+          <div class="col-md-12 text-center">
+                <h3 id="animate-charcter"></h3>
+          </div>
+        </div>
+    </div>
+    <script>
+        const fileInput = document.getElementById('audio-file');
+        fileInput.addEventListener('change', (event) => {
+            const fileName = event.target.files[0].name;
+            const inputField = document.getElementById('upload-name');
+            inputField.value = fileName;
+        });
+    </script>
+    <script>
+        
+    </script>
+    <script> 
+        function uploadAndPlay() {
+            const fileInput = document.getElementById("audio-file");
+            const audioPlayer = document.getElementById("audio-player");
+            const trybtn = document.getElementsByClassName("infer");
+            const file = fileInput.files[0];
+            const url = URL.createObjectURL(file);
+            audioPlayer.src = url;
+            audioPlayer.style.display = "block";
+            trybtn[0].style.display = "inline-block";
+        }
+        function uploadAudio() {
+            const formData = new FormData();
+            formData.append('audio-file', document.getElementById('audio-file').files[0]);
+          
+            // Show the loading spinner
+            const showResult = document.getElementById('resultshow');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            loadingSpinner.style.display = 'block';
+            showResult.style.display='none';
+
+            fetch('/upload-audio', {
+              method: 'POST',
+              body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide the loading spinner
+                loadingSpinner.style.display = 'none';
+                // Show the result again
+                showResult.style.display = 'block';
+                // Update the HTML content of the result div with the inference result
+                document.getElementById('animate-charcter').innerHTML = data.result;
+            })
+            .catch(error => {
+                console.error(error);
+                // Hide the loading spinner in case of error
+                loadingSpinner.style.display = 'none';
+                // Show the result again
+                showResult.style.display = 'none';
+            });
+        }
+    </script>
+  </body>
+</html>

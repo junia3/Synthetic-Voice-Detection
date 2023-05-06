@@ -1,0 +1,205 @@
+div.container{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+div.audio-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+}
+
+h1.title {
+    position: relative;
+}
+h1.title:before,
+h1.title:after {
+    content: '[';
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    height: 100%;
+    font-size: 1.3em;
+    color: tomato;    
+    transition: all 0.8s ease;
+}
+
+h1.title:after { content: ']'; }
+
+h1.title:hover:before { 
+    transform: translateX(-10px);
+}
+
+h1.title:hover:after { 
+    transform: translateX(10px);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #eee;
+}
+
+label {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.container label {
+        background: linear-gradient(to bottom, #C2A4E4, #E4A4C2);
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    }
+  
+    label:hover {
+        background: linear-gradient(to bottom, #E4A4C2, #C2A4E4);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .container input[type="file"] {
+        position: absolute;
+        width: 0;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+    }
+    
+    #upload-name {
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 16px;
+        width: 40vw;
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+      
+    #upload-name:focus {
+        border-color: #6E99D1;
+        box-shadow: 0px 0px 5px 0px rgba(110, 153, 209, 0.5);
+        outline: none;
+    }
+
+audio {
+    margin-top: 20px;
+    display: none;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+audio:hover {
+    background-color: #ddd;
+  }
+  
+audio:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px 0px rgba(110, 153, 209, 0.5);
+}
+
+.upload {
+    background: linear-gradient(to bottom, #E4A4C2, #C2A4E4);
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  }
+  
+.upload:hover {
+    background: linear-gradient(to bottom, #C2A4E4, #E4A4C2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.infer {
+    display: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border-color: #f4f4f4;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #b191d8;
+    background-image: linear-gradient(to bottom right, #b191d8, #e6a5c0);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+  
+.infer:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    background-color: #e6a5c0;
+    background-image: linear-gradient(to bottom right, #e6a5c0, #b191d8);
+}
+
+#loading-spinner{
+    display: none;
+    text-align: center;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    align-iterms: center;
+    height: 10vh;
+}
+
+#result{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#animate-charcter{
+    text-transform: uppercase;
+    background-image: linear-gradient(
+        -225deg,
+        #231557 0%,
+        #44107a 29%,
+        #ff1361 67%,
+        #fff800 100%
+    );
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+    font-size: 20px;
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}
