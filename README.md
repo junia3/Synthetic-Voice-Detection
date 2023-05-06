@@ -75,8 +75,6 @@ Detailed implementation is written on [dataset page](./datasets).
 # Train baseline
 Check file ['baseline.ipynb'](./baseline.ipynb)
 
-![footer](https://capsule-render.vercel.app/api?type=waving&color=0:FF7F50,50:008B8B,100:8A2BE2&height=150&section=footer&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40)
-
 ---
 
 # Evaluation metric
@@ -119,3 +117,5 @@ After inference is over, the result is presented on the page! It only takes few 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/79881119/236615047-5f2c7cb4-fcaf-40c4-af84-58759f092d8d.png" width="500">    
 </p>
+
+![footer](https://capsule-render.vercel.app/api?type=waving&color=0:FF7F50,50:008B8B,100:8A2BE2&height=150&section=footer&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40)
