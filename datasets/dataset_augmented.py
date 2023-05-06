@@ -6,6 +6,7 @@ import numpy as np
 from spafe.features import lfcc, bfcc, cqcc, mfcc, msrcc, ngcc, pncc, psrcc, rplp
 from spafe.utils.preprocessing import SlidingWindow
 import soundfile as sf
+import augment
 # using augmentaton method: Pitch randomization, Reverberation, 
 # Additive noise, Time dropout (temporal masking), Band reject, Clipping
 
