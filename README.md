@@ -80,3 +80,14 @@ Check file ['baseline.ipynb'](./baseline.ipynb)
 ---
 
 # Evaluation metric
+
+---
+
+# Front-end demo Web
+
+### Implemented with pytorch Flask 
+```bash
+python service.py
+```
+
+Be sure you have to 'download' best_model.pt(pretrained model) and locate it on the same directory as ```service.py```
