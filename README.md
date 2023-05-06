@@ -93,3 +93,29 @@ python service.py
 Be sure you have to 'download' best_model.pt(pretrained model) and locate it on the same directory as ```service.py```   
 
 The front-end web is running on [your local](http://127.0.0.1:5000/)
+
+### Upload audio sample
+
+Press button 'Choose an audio file' and upload audio data
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/79881119/236614745-036f8ffc-3bea-435d-ad37-d7570d8903e1.png" width="500">    
+</p>
+
+If you uploaded audio file properly, click 'Upload and play'.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/79881119/236614844-ecccb64b-e871-42a4-bc85-138309caee78.png" width="500">    
+</p>
+
+Then click 'Try Me!' button. You can use our service for free.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/79881119/236614944-88200816-ca36-41ba-acad-18e4f9ec4351.png" width="500">    
+</p>
+
+After inference is over, the result is presented on the page! It only takes few seconds for 10 sec sample even in CPU environment!
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/79881119/236615047-5f2c7cb4-fcaf-40c4-af84-58759f092d8d.png" width="500">    
+</p>
