@@ -1,27 +1,71 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Upload and play audio</title>
+    <title>Synthetic Voice Detection</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
-        <h1 class="title">Upload and play audio</h1>
+        <div class="welcome" id="welcome_block">
+            <div class="sayhello" id="hello">
+                <body>
+                    <div class="waviy">
+                        <span style="--i:1">T</span>
+                        <span style="--i:2">E</span>
+                        <span style="--i:3">A</span>
+                        <span style="--i:4">M</span>
+                        <span style="--i:5"> </span>
+                        <span style="--i:6">-</span>
+                        <span style="--i:7"> </span>
+                        <span style="--i:8">S</span>
+                        <span style="--i:9">V</span>
+                        <span style="--i:10">D</span>
+                    </div>
+                </body>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="title">We can detect spoofing voice</h1>
     </div>
     <div class="container">
         <label for="audio-file">Choose an audio file</label>
         <input type="file" class="audio-button" name="audio-file" id="audio-file">
-        <button type="button" class="upload" onclick="uploadAndPlay()">Upload and play</button><br>
+        <button type="button" class="upload" onclick="uploadAndPlay()">Upload and play</button><br><br><br>
         <input id="upload-name" value="파일을 선택해주세요" placeholder="첨부파일">
     </div>
     <div class="audio-wrapper">
-        <audio controls autoplay id="audio-player"></audio>
+        <br><br>
+        <audio controls id="audio-player"></audio>
+        <br><br>
     </div>
-    <div class="container">
+    <div class="container-aug", id="augmentation">
+        <label for="pitch">Pitch</label>
+        <br><br>
+        <input type="range" min="-10" max="10" value="0" step="1" class="slider" id="pitch" name="pitch"><br><br>
+        <span id="pitch-value">0</span><br><br>
+        <label for="noise">Noise</label>
+        <br><br>
+        <input type="range" min="0" max="10" value="5" class="slider" id="noise" name="noise"><br><br>
+        <span id="noise-value">5</span><br><br>
+        <br><br>
+        <button class="augment" onclick="augmentAudio()"> Apply Augmentation </button>
+    </div>
+    <div class="container" id="loading-aug">
+        <img src="https://i.gifer.com/yy3.gif" width="200">
+    </div>
+    <div class="audio-wrapper">
+        <audio controls id="augmented-audio-player"></audio>
+    </div>
+    <div class="container-try" id="try">
+        <br><br>
         <button class="infer" onclick="uploadAudio()"> Try Me! </button>
     </div>
-    <div id="loading-spinner">
-        <img src="https://i.gifer.com/XOsX.gif" width="100">
+    <div class="container" id="loading-spinner">
+        <img src="https://i.gifer.com/XOsX.gif" width="200">
     </div>
     <div class="container" id="resultshow">
         <div class="row">
@@ -29,6 +73,37 @@
                 <h3 id="animate-charcter"></h3>
           </div>
         </div>
+    </div>
+    <div class="card-container" id="letter">
+        <div class="card card-1">
+            <p align="center">
+                Dear valued customers,
+            </p>
+            <p align="left" style="font-size: 1em;"> 
+                We hope this letter finds you well. We wanted to take a moment to thank you for choosing our service and entrusting us with your security needs.
+            </p>
+            <p align="left" style="font-size: 1em;">
+                We understand the importance of protecting your sensitive information from fraudulent activities such as voice spoofing. That's why we've implemented a cutting-edge deep learning model to detect whether a voice is synthesized or not, allowing us to provide you with the highest level of security.
+            </p>
+            <p align="left" style="font-size: 1em;">
+                Our team of experts has worked tirelessly to develop and refine this technology, ensuring that it is accurate and reliable. With our service, you can rest assured that your voice data is in good hands and that we will do everything in our power to protect you from any potential threats.
+            </p>
+            <p align="left" style="font-size: 1em;">
+                We appreciate your continued support and trust in our service. If you have any questions or concerns, please don't hesitate to reach out to our customer support team. We are always here to help.
+            </p>
+            <p align="left" style="font-size: 1em;">
+                Thank you again for choosing our service. We look forward to serving you for many years to come!
+            </p>   
+            <p align="left" style="font-size: 1em;">
+                Best regards,   
+            </p>
+            <p align="cebter" style="font-size: 1.5em;">
+                05. 13. 23,  Synthetic Voice Detection Team
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <button id="promote" class="githubbtn" onclick="location.href = 'https://github.com/junia3/Synthetic-Speech-Detection' ">Visit our github page!!</button>
     </div>
     <script>
         const fileInput = document.getElementById('audio-file');
@@ -39,26 +114,83 @@
         });
     </script>
     <script>
-        
+        // Get the sliders and text elements
+        var pitchSlider = document.getElementById("pitch");
+        var noiseSlider = document.getElementById("noise");
+
+        var pitchText = document.getElementById("pitch-value");
+        var noiseText = document.getElementById("noise-value");
+
+        // Update the text elements whenever a slider value changes
+        pitchSlider.oninput = function() {
+        pitchText.innerHTML = this.value;
+        }
+
+        noiseSlider.oninput = function() {
+        noiseText.innerHTML = this.value;
+        }
+
     </script>
     <script> 
         function uploadAndPlay() {
             const fileInput = document.getElementById("audio-file");
             const audioPlayer = document.getElementById("audio-player");
-            const trybtn = document.getElementsByClassName("infer");
+            const augmentblock = document.getElementById("augmentation");
+            const augaudio = document.getElementById('augmented-audio-player');
+            const letter = document.getElementById('letter');
+            const result = document.getElementById('resultshow');
+
             const file = fileInput.files[0];
             const url = URL.createObjectURL(file);
             audioPlayer.src = url;
             audioPlayer.style.display = "block";
-            trybtn[0].style.display = "inline-block";
+            augmentblock.style.display = "block";
+
+            augaudio.style.display = "none";
+            letter.style.display = "none";
+            result.style.display = "none";
         }
+
+        function augmentAudio() {
+            const formData = new FormData();
+            const augaudio = document.getElementById('augmented-audio-player');
+            const inference = document.getElementById('try');
+            const loadingAug = document.getElementById('loading-aug');
+            const letter = document.getElementById('letter');
+            const result = document.getElementById('resultshow');
+
+            formData.append('audio-file', document.getElementById('audio-file').files[0]);
+            formData.append('pitch', document.getElementById('pitch').value);
+            formData.append('noise', document.getElementById('noise').value);
+            augaudio.style.display = "none";
+            loadingAug.style.display = 'block';
+            letter.style.display = "none";
+
+            fetch('/apply-augmentation', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide the loading spinner
+                loadingAug.style.display = 'none';
+                augaudio.setAttribute('src', data.result);
+                augaudio.style.display = "block";
+                inference.style.display = "block";
+                result.style.display = "none";
+            });
+        }
+
         function uploadAudio() {
             const formData = new FormData();
-            formData.append('audio-file', document.getElementById('audio-file').files[0]);
-          
+            const augaudio = document.getElementById('augmented-audio-player');
+            formData.append('audio-path', augaudio.getAttribute('src'));
             // Show the loading spinner
             const showResult = document.getElementById('resultshow');
             const loadingSpinner = document.getElementById('loading-spinner');
+            const letter = document.getElementById('letter');
+            const inference = document.getElementById('try');
+            const result = document.getElementById('resultshow');
             loadingSpinner.style.display = 'block';
             showResult.style.display='none';
 
@@ -72,6 +204,10 @@
                 loadingSpinner.style.display = 'none';
                 // Show the result again
                 showResult.style.display = 'block';
+                // show the letter
+                letter.style.display = 'block';
+                inference.style.display = "none";
+                result.style.display = "block";
                 // Update the HTML content of the result div with the inference result
                 document.getElementById('animate-charcter').innerHTML = data.result;
             })
@@ -79,8 +215,10 @@
                 console.error(error);
                 // Hide the loading spinner in case of error
                 loadingSpinner.style.display = 'none';
+                letter.style.display = 'none';  
                 // Show the result again
                 showResult.style.display = 'none';
+                
             });
         }
     </script>
