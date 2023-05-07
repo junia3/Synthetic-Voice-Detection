@@ -83,6 +83,8 @@ Check file ['baseline.ipynb'](./baseline.ipynb)
 
 # Front-end demo web
 
+Basically you need some requirements to run this program
+
 ### Implemented with pytorch Flask 
 ```bash
 python service.py
