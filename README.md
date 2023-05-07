@@ -1,9 +1,5 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=0:FF7F50,50:008B8B,100:8A2BE2&height=250&section=header&text=Synthetic%20Speech%20Detection&fontSize=45&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40)
-<!-- 
-<p align="center"><a href="#">
-    <img src="https://capsule-render.vercel.app/api?type=waving&color=0:F9D976,100:F39F86&height=250&section=header&text="Synthetic speech detection" &fontSize=40&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40" alt="header" />
-</a></p>
- -->
+
 <p align="center">
     <img src="https://user-images.githubusercontent.com/79881119/236666746-2bfa307e-c6de-4f30-9e42-2d1d21466799.png" width="500">
 </p>
