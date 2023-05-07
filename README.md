@@ -77,6 +77,26 @@ Check file ['baseline.ipynb'](./baseline.ipynb)
 
 # Evaluation metric
 
+### Equal Error Rate(EER) Metric
+> Audio spoofing is the act of attempting to deceive a system that relies on audio input, such as a speaker recognition system, by playing a recording of a legitimate user's voice instead of speaking in real-time. Detecting audio spoofing is important to prevent unauthorized access to sensitive information and protect against fraud. One way to evaluate the performance of an audio spoofing detection system is to use the EER metric. The EER is the point at which the false acceptance rate (FAR) and the false rejection rate (FRR) are equal.
+
+> The FAR is the proportion of spoof attacks that are incorrectly accepted as genuine, while the FRR is the proportion of genuine attempts that are incorrectly rejected as spoof attacks. Ideally, a spoofing detection system should have low values for both FAR and FRR.
+
+> To calculate the EER, a system is tested on a dataset of both genuine and spoofed audio samples, and the FAR and FRR are calculated at different thresholds. The threshold represents the level of confidence required for a system to classify a sample as either genuine or spoofed. The EER is the point where the FAR and FRR intersect on a Receiver Operating Characteristic (ROC) curve.
+
+> In summary, the EER metric is a useful way to evaluate the performance of an audio spoofing detection system. It takes into account both false acceptance and false rejection rates, and provides a single value that represents the level of performance achieved by the system.
+
+### tandem Detection Cost Function (t-DCF)
+> The t-DCF is a commonly used metric for evaluating the performance of audio spoofing detection systems, especially in the context of speaker verification systems. The t-DCF metric takes into account both the detection accuracy of the system as well as the potential financial cost associated with false acceptance and false rejection errors.
+
+> The t-DCF is calculated as the weighted sum of two costs: the false alarm cost (Cfa) and the missed detection cost (Cmiss). The false alarm cost represents the cost associated with incorrectly accepting a spoof attack as genuine, while the missed detection cost represents the cost associated with incorrectly rejecting a genuine attempt as a spoof attack.
+
+> The t-DCF metric is computed using a scoring function that assigns a score to each audio sample based on the likelihood that it is a genuine or a spoofed sample. The t-DCF metric is then calculated using a set of parameters that define the costs of false acceptance and false rejection errors, as well as the prior probabilities of genuine and spoofed samples in the dataset.
+
+> The t-DCF metric is especially useful for evaluating the performance of audio spoofing detection systems in real-world scenarios where the cost of false alarms and missed detections can be high. For example, in a speaker verification system used for financial transactions, a false alarm could result in unauthorized access to an account, while a missed detection could result in a legitimate user being denied access to their own account.
+
+> In summary, the t-DCF metric is a widely used evaluation metric in the field of audio spoofing detection, which takes into account the financial costs associated with false acceptance and false rejection errors.
+
 ---
 
 # Front-end demo web
