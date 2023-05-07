@@ -129,7 +129,7 @@ Apply augmentation and wait for data pre-processing. Then click 'Try Me!' button
     <img src="https://user-images.githubusercontent.com/79881119/236667257-7cf5fb6d-39f3-4f35-91fa-e811f9b6777d.png" width="400">  
 </p>
 
-After inference is over, the result is presented on the page! It only takes few seconds for 10 sec sample even in CPU environment!
+After inference is over, the result is presented on the page! It only takes few seconds for 10 sec sample even in **CPU environment**!
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/79881119/236667484-5657d4d0-4eac-4614-9f85-6cb243885a4c.png" width="400">    
