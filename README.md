@@ -4,7 +4,9 @@
     <img src="https://capsule-render.vercel.app/api?type=waving&color=0:F9D976,100:F39F86&height=250&section=header&text="Synthetic speech detection" &fontSize=40&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40" alt="header" />
 </a></p>
  -->
-
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/79881119/236666746-2bfa307e-c6de-4f30-9e42-2d1d21466799.png" width="1000">
+</p>
 <p align="center"; font-size=24px><b>This project implemented with YAI members for 2nd YAICON</b></p>
 
 ---
