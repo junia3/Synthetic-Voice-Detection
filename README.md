@@ -83,7 +83,11 @@ Check file ['baseline.ipynb'](./baseline.ipynb)
 
 # Front-end demo web
 
-Basically you need some requirements to run this program
+Basically you need some requirements to run this program(for augmentation)
+```bash
+pip install soundfile
+pip install audiomentations
+```
 
 ### Implemented with pytorch Flask 
 ```bash
