@@ -83,6 +83,8 @@ Check file ['baseline.ipynb'](./baseline.ipynb)
 
 # Front-end demo web
 
+### Requirements
+
 Basically you need some requirements to run this program(for augmentation)
 ```bash
 pip install soundfile
@@ -94,8 +96,8 @@ pip install audiomentations
 python service.py
 ```
 
+### Download pretrained model(to be updated)
 Be sure you have to 'download' best_model.pt(pretrained model) and locate it on the same directory as ```service.py```   
-
 The front-end web is running on [your local](http://127.0.0.1:5000/)
 
 ### Upload audio sample
