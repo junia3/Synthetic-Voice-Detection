@@ -112,30 +112,21 @@ The front-end web is running on [your local](http://127.0.0.1:5000/)
 Press button 'Choose an audio file' and upload audio data
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236666882-efb92bc4-5200-4ca9-a3e7-a9951aeb2242.png" width="400">    
+    <img src="https://user-images.githubusercontent.com/79881119/236666882-efb92bc4-5200-4ca9-a3e7-a9951aeb2242.png" width="350">
+    <img src="https://user-images.githubusercontent.com/79881119/236666930-7686fc8b-165d-4d7b-ba89-92bb89512e7e.png" width="400">
 </p>
 
 If you uploaded audio file properly, click 'Upload and play'.
-
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236666930-7686fc8b-165d-4d7b-ba89-92bb89512e7e.png" width="400">    
-</p>
-
 Apply augmentation on your data. If want to run it with default setting, just set two values $0$. 
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/79881119/236666979-74664dca-bd95-4844-8a7a-0cf4b9af33a5.png" width="400">    
 </p>
 
-Apply augmentation and wait for data pre-processing
+Apply augmentation and wait for data pre-processing. Then click 'Try Me!' button. You can use our service for free in your own device.
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236667053-bc5fc6b3-a6b1-40b2-93b5-fb51cb9a9858.png" width="400">    
-</p>
-
-Then click 'Try Me!' button. You can use our service for free in your own device.
-
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236667257-7cf5fb6d-39f3-4f35-91fa-e811f9b6777d.png" width="400">    
+    <img src="https://user-images.githubusercontent.com/79881119/236667053-bc5fc6b3-a6b1-40b2-93b5-fb51cb9a9858.png" width="400">
+    <img src="https://user-images.githubusercontent.com/79881119/236667257-7cf5fb6d-39f3-4f35-91fa-e811f9b6777d.png" width="400">  
 </p>
 
 After inference is over, the result is presented on the page! It only takes few seconds for 10 sec sample even in CPU environment!
