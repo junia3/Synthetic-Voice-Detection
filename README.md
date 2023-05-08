@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236756731-cd77afdb-d09c-477f-85e0-c73ead57d928.png" width="1000">
+    <img src="https://user-images.githubusercontent.com/79881119/236761893-626d7e29-3af8-4ace-9b5d-45615a945d20.png" width="1000">
 </p>
 <p align="center"; font-size=24px><b>This project implemented with YAI members for 2nd YAICON</b></p>
 
