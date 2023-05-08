@@ -416,12 +416,13 @@ audio:focus {
 }
 
 .sayhello {
-  margin-top: 120px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 .sayhello .waviy {
   position: relative;
   -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
-  font-size: 4em;
+  font-size: 2.5em;
 }
 .sayhello .waviy span {
   font-family: 'Alfa Slab One', cursive;
@@ -556,4 +557,30 @@ audio:focus {
 
 #augmented{
   display: none;
+}
+
+.anothercat body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.anothercat .waviy {
+  margin-top: 40px;
+  margin-bottom: 0px;
+  position: relative;
+}
+.anothercat .waviy span {
+  position: relative;
+  display: inline-block;
+  font-size: 4.2vmin;
+  color: #242424;
+  text-transform: uppercase;
+  animation: flip 5s infinite;
+  animation-delay: calc(.2s * var(--i));
+}
+@keyframes flip {
+  0%, 80% {
+    transform: rotateY(360deg);
+  }
 }
