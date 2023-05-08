@@ -1,9 +1,7 @@
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236761893-626d7e29-3af8-4ace-9b5d-45615a945d20.png" width="1000">
+    <img src="https://user-images.githubusercontent.com/79881119/236769866-51c22da8-c1df-4fff-98f1-40993bc4f520.png" width="1000">
 </p>
 <p align="center"; font-size=24px><b>Spoofing detection project in 2nd YAICON</b></p>
-
-<p align="center"><img src="https://user-images.githubusercontent.com/79881119/236765082-9a073601-d863-4900-b3ad-6c176ee39cc1.gif" width="400"></p>
 
 ---
 
@@ -17,6 +15,8 @@
 </b></p> 
 
 ---
+
+<p align="center"><img src="https://user-images.githubusercontent.com/79881119/236765082-9a073601-d863-4900-b3ad-6c176ee39cc1.gif" width="400"></p>
 
 # Requirements setting
 
