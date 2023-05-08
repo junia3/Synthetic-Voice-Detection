@@ -1,7 +1,9 @@
 <p align="center">
     <img src="https://user-images.githubusercontent.com/79881119/236761893-626d7e29-3af8-4ace-9b5d-45615a945d20.png" width="1000">
 </p>
-<p align="center"; font-size=24px><b>This project implemented with YAI members for 2nd YAICON</b></p>
+<p align="center"; font-size=24px><b>Spoofing detection project in 2nd YAICON</b></p>
+
+<p align="center"><img src="https://user-images.githubusercontent.com/79881119/236765082-9a073601-d863-4900-b3ad-6c176ee39cc1.gif" width="400"></p>
 
 ---
 
