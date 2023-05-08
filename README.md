@@ -147,5 +147,3 @@ After inference is over, the result is presented on the page! It only takes few 
 </p>
 
 P.S. We have a small gift for anyone who runs the web demo application on their own device! Give it a try and discover what it is.
-
-![footer](https://capsule-render.vercel.app/api?type=waving&color=0:FF7F50,50:008B8B,100:8A2BE2&height=150&section=footer&animation=fadeIn&fontColor=FFFFFF&fontAlignY=40)
