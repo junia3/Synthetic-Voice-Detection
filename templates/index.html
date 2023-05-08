@@ -6,63 +6,72 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/wavesurfer.js"></script>
   </head>
   <body>
-    <div class="container">
-        <div class="welcome" id="welcome_block">
-            <div class="sayhello" id="hello">
-                <body>
-                    <div class="waviy">
-                        <span style="--i:1">T</span>
-                        <span style="--i:2">E</span>
-                        <span style="--i:3">A</span>
-                        <span style="--i:4">M</span>
-                        <span style="--i:5"> </span>
-                        <span style="--i:6">-</span>
-                        <span style="--i:7"> </span>
-                        <span style="--i:8">S</span>
-                        <span style="--i:9">V</span>
-                        <span style="--i:10">D</span>
-                    </div>
-                </body>
+    <div class="container-introduce" id="first">
+        <div class="sayhello" id="hello">
+            <div class="waviy">
+                <span style="--i:1">T</span>
+                <span style="--i:2">E</span>
+                <span style="--i:3">A</span>
+                <span style="--i:4">M</span>
+                <span style="--i:5"> </span>
+                <span style="--i:6">-</span>
+                <span style="--i:7"> </span>
+                <span style="--i:8">S</span>
+                <span style="--i:9">V</span>
+                <span style="--i:10">D</span>
             </div>
         </div>
+        <button id="promote" class="githubbtn" onclick="location.href = 'https://github.com/junia3/Synthetic-Speech-Detection' ">Visit our github page!!</button>
     </div>
-    <div class="container">
-        <h1 class="title">We can detect spoofing voice</h1>
-    </div>
-    <div class="container">
-        <label for="audio-file">Choose an audio file</label>
-        <input type="file" class="audio-button" name="audio-file" id="audio-file">
-        <button type="button" class="upload" onclick="uploadAndPlay()">Upload and play</button><br><br><br>
-        <input id="upload-name" value="파일을 선택해주세요" placeholder="첨부파일">
-    </div>
-    <div class="audio-wrapper">
-        <br><br>
-        <audio controls id="audio-player"></audio>
-        <br><br>
-    </div>
-    <div class="container-aug", id="augmentation">
-        <label for="pitch">Pitch</label>
-        <br><br>
-        <input type="range" min="-10" max="10" value="0" step="1" class="slider" id="pitch" name="pitch"><br><br>
-        <span id="pitch-value">0</span><br><br>
-        <label for="noise">Noise</label>
-        <br><br>
-        <input type="range" min="0" max="10" value="5" class="slider" id="noise" name="noise"><br><br>
-        <span id="noise-value">5</span><br><br>
-        <br><br>
-        <button class="augment" onclick="augmentAudio()"> Apply Augmentation </button>
-    </div>
-    <div class="container" id="loading-aug">
-        <img src="https://i.gifer.com/yy3.gif" width="200">
-    </div>
-    <div class="audio-wrapper">
-        <audio controls id="augmented-audio-player"></audio>
-    </div>
-    <div class="container-try" id="try">
-        <br><br>
-        <button class="infer" onclick="uploadAudio()"> Try Me! </button>
+    <div class="container-introduce" id="second">
+        <div class="container" id="spoof">
+            <h1 class="title">We can detect spoofing voice</h1>
+            <label for="audio-file">Choose an audio file</label>
+            <input type="file" class="audio-button" name="audio-file" id="audio-file">
+            <button type="button" class="upload" onclick="uploadAndPlay()">Upload and play</button>
+            <br><br><br>
+            <input id="upload-name" value="파일을 선택해주세요" placeholder="첨부파일">
+        </div>
+        <div class="audio-wrapper" id="original">
+            <div class="music">
+                <div class="track">
+                    <img src="static/image/play.png" id="playBtn">
+                    <div id="waveform"></div>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+        <div class="container-aug", id="augmentation">
+            <label for="pitch">Pitch</label>
+            <br><br>
+            <input type="range" min="-10" max="10" value="0" step="1" class="slider" id="pitch" name="pitch"><br><br>
+            <span id="pitch-value">0</span><br><br>
+            <label for="noise">Noise</label>
+            <br><br>
+            <input type="range" min="0" max="10" value="5" class="slider" id="noise" name="noise"><br><br>
+            <span id="noise-value">5</span><br><br>
+            <br><br>
+            <button class="augment" onclick="augmentAudio()"> Apply Augmentation </button>
+        </div>
+        <div class="container" id="loading-aug">
+            <img src="https://i.gifer.com/yy3.gif" width="200">
+        </div>
+        <div class="audio-wrapper" id="augmented">
+            <div class="music">
+                <div class="track">
+                    <img src="static/image/play.png" id="playBtn2">
+                    <div id="waveform2"></div>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+        <div class="container-try" id="try">
+            <br><br>
+            <button class="infer" onclick="uploadAudio()"> Try Me! </button>
+        </div>
     </div>
     <div class="container" id="loading-spinner">
         <img src="https://i.gifer.com/XOsX.gif" width="200">
@@ -102,9 +111,6 @@
             </p>
         </div>
     </div>
-    <div class="container">
-        <button id="promote" class="githubbtn" onclick="location.href = 'https://github.com/junia3/Synthetic-Speech-Detection' ">Visit our github page!!</button>
-    </div>
     <script>
         const fileInput = document.getElementById('audio-file');
         fileInput.addEventListener('change', (event) => {
@@ -131,29 +137,87 @@
         }
 
     </script>
-    <script> 
+    <script>
+        
+        var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 1000, 128);
+        linGrad.addColorStop(0, '#ff006c'); 
+        linGrad.addColorStop(0.5, '#b621fe');
+        linGrad.addColorStop(1, '#1fd1f9');
+
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: '#ddd',
+            progressColor: linGrad,
+            barWidth: 3,
+            responsive: true,
+            height: 100,
+            barRadius: 4
+        });
+        var wavesurfer2 = WaveSurfer.create({
+            container: '#waveform2',
+            waveColor: '#ddd',
+            progressColor: linGrad,
+            barWidth: 3,
+            responsive: true,
+            height: 100,
+            barRadius: 4
+        });
+        var playBtn = document.getElementById("playBtn");
+        var playBtn2 = document.getElementById("playBtn2");
+
+        // Waveform 1
+        playBtn.onclick = function(){
+            wavesurfer.playPause();
+            if(playBtn.src.includes("play.png")){
+                playBtn.src = "static/image/pause.png";
+            } else{
+                playBtn.src = "static/image/play.png";
+            }
+        }
+        wavesurfer.on('finish', function(){
+            playBtn.src = "static/image/play.png";
+            wavesurfer.stop();
+        })
+
+        // Waveform2
+        playBtn2.onclick = function(){
+            wavesurfer2.playPause();
+            if(playBtn2.src.includes("play.png")){
+                playBtn2.src = "static/image/pause.png";
+            } else{
+                playBtn2.src = "static/image/play.png";
+            }
+        }
+        wavesurfer2.on('finish', function(){
+            playBtn2.src = "static/image/play.png";
+            wavesurfer2.stop();
+        })
+
+
+    </script>
+    <script>
+        var inferPath;
         function uploadAndPlay() {
+            // Get each elements by ID
             const fileInput = document.getElementById("audio-file");
-            const audioPlayer = document.getElementById("audio-player");
+            const ogWaveform = document.getElementById("original");
             const augmentblock = document.getElementById("augmentation");
-            const augaudio = document.getElementById('augmented-audio-player');
             const letter = document.getElementById('letter');
             const result = document.getElementById('resultshow');
-
+            
+            // Audio file
             const file = fileInput.files[0];
             const url = URL.createObjectURL(file);
-            audioPlayer.src = url;
-            audioPlayer.style.display = "block";
+            ogWaveform.style.display = "block";
             augmentblock.style.display = "block";
-
-            augaudio.style.display = "none";
             letter.style.display = "none";
             result.style.display = "none";
+            wavesurfer.load(url);
         }
 
         function augmentAudio() {
             const formData = new FormData();
-            const augaudio = document.getElementById('augmented-audio-player');
+            const augWaveform = document.getElementById("augmented");
             const inference = document.getElementById('try');
             const loadingAug = document.getElementById('loading-aug');
             const letter = document.getElementById('letter');
@@ -162,7 +226,8 @@
             formData.append('audio-file', document.getElementById('audio-file').files[0]);
             formData.append('pitch', document.getElementById('pitch').value);
             formData.append('noise', document.getElementById('noise').value);
-            augaudio.style.display = "none";
+
+            augWaveform.style.display = "none";
             loadingAug.style.display = 'block';
             letter.style.display = "none";
 
@@ -174,17 +239,19 @@
             .then(data => {
                 // Hide the loading spinner
                 loadingAug.style.display = 'none';
-                augaudio.setAttribute('src', data.result);
-                augaudio.style.display = "block";
+                augWaveform.style.display = "block";
                 inference.style.display = "block";
                 result.style.display = "none";
+                
+                // Load audio file on waveform 
+                wavesurfer2.load(data.result);
+                inferPath = data.result;
             });
         }
 
         function uploadAudio() {
             const formData = new FormData();
-            const augaudio = document.getElementById('augmented-audio-player');
-            formData.append('audio-path', augaudio.getAttribute('src'));
+            formData.append('audio-path', inferPath);
             // Show the loading spinner
             const showResult = document.getElementById('resultshow');
             const loadingSpinner = document.getElementById('loading-spinner');
@@ -218,7 +285,6 @@
                 letter.style.display = 'none';  
                 // Show the result again
                 showResult.style.display = 'none';
-                
             });
         }
     </script>
