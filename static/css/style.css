@@ -573,7 +573,7 @@ audio:focus {
 .anothercat .waviy span {
   position: relative;
   display: inline-block;
-  font-size: 4.2vmin;
+  font-size: 3vmin;
   color: #242424;
   text-transform: uppercase;
   animation: flip 5s infinite;
