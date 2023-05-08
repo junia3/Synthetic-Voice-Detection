@@ -121,29 +121,29 @@ The front-end web is running on [your local](http://127.0.0.1:5000/)
 Press button 'Choose an audio file' and upload audio data
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236757128-d89c4001-864c-48b6-8564-e6a10f0cee15.png" width="800">
+    <img src="https://user-images.githubusercontent.com/79881119/236757128-d89c4001-864c-48b6-8564-e6a10f0cee15.png" width="700">
 </p>
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236757249-a2ba17ec-a23f-436c-8bd5-2ecbe4b67e1a.png" width="800">
+    <img src="https://user-images.githubusercontent.com/79881119/236757249-a2ba17ec-a23f-436c-8bd5-2ecbe4b67e1a.png" width="700">
 </p>
 
 If you uploaded audio file properly, click 'Upload and play'.
 Apply augmentation on your data. If want to run it with default setting, just set two values $0$. 
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236757504-e8359cb6-52f2-42b4-bbd6-6f41225cdc4d.png" width="800">    
+    <img src="https://user-images.githubusercontent.com/79881119/236757504-e8359cb6-52f2-42b4-bbd6-6f41225cdc4d.png" width="700">    
 </p>
 
 Apply augmentation and wait for data pre-processing. Then click 'Try Me!' button. You can use our service for free in your own device.
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236757663-53f99025-e88f-4a8c-89cd-0eebdc5cfea8.png" width="1000">
+    <img src="https://user-images.githubusercontent.com/79881119/236757663-53f99025-e88f-4a8c-89cd-0eebdc5cfea8.png" width="700">
 </p>
 
 After inference is over, the result is presented on the page! It only takes few seconds for 10 sec sample even in **CPU environment**!
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236757854-0eac19d2-6422-4e82-b3c2-4ba95ea568d2.png" width="800">    
+    <img src="https://user-images.githubusercontent.com/79881119/236757854-0eac19d2-6422-4e82-b3c2-4ba95ea568d2.png" width="700">    
 </p>
 
 P.S. We have a small gift for anyone who runs the web demo application on their own device! Give it a try and discover what it is.
