@@ -13,6 +13,8 @@ from glob import glob
 def voice_augment(audio_path, pitch, n_scale):
     # Apply the augmentation settings to your image processing code here
     audio, rate = sf.read(audio_path)
+    if audio.ndim > 1:
+        audio = audio[:, 0]
     # Pitch shift the audio
     augment = Compose([
         PitchShift(min_semitones=pitch, max_semitones=pitch, p=1),
