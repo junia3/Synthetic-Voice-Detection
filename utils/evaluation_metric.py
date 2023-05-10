@@ -23,14 +23,14 @@ def compute_eer_and_tdcf(cm_score_file, path_to_database):
     asv_data = np.genfromtxt(asv_score_file, dtype=str)
     asv_sources = asv_data[:, 0]
     asv_keys = asv_data[:, 1]
-    asv_scores = asv_data[:, 2].astype(np.float)
+    asv_scores = asv_data[:, 2].astype(np.float64)
 
     # Load CM scores
     cm_data = np.genfromtxt(cm_score_file, dtype=str)
     cm_utt_id = cm_data[:, 0]
     cm_sources = cm_data[:, 1]
     cm_keys = cm_data[:, 2]
-    cm_scores = cm_data[:, 3].astype(np.float)
+    cm_scores = cm_data[:, 3].astype(np.float64)
 
     other_cm_scores = -cm_scores
 
@@ -102,7 +102,6 @@ def compute_eer_and_tdcf(cm_score_file, path_to_database):
     plt.title('CM score histogram')
     plt.savefig(cm_score_file[:-4]+'1.png')
 
-
     # Plot t-DCF as function of the CM threshold.
     plt.figure()
     plt.plot(CM_thresholds, tDCF_curve)
@@ -116,9 +115,7 @@ def compute_eer_and_tdcf(cm_score_file, path_to_database):
     plt.ylim([0, 1.5])
     plt.savefig(cm_score_file[:-4]+'2.png')
 
-    plt.show()
-
-    return min(eer_cm, other_eer_cm), 
+    return min(eer_cm, other_eer_cm), min_tDCF
 
 def obtain_asv_error_rates(tar_asv, non_asv, spoof_asv, asv_threshold):
 
@@ -163,7 +160,6 @@ def compute_eer(target_scores, nontarget_scores):
     min_index = np.argmin(abs_diffs)
     eer = np.mean((frr[min_index], far[min_index]))
     return eer, thresholds[min_index]
-
 
 def compute_tDCF(bonafide_score_cm, spoof_score_cm, Pfa_asv, Pmiss_asv, Pmiss_spoof_asv, cost_model, print_cost):
     # Sanity check of cost parameters
