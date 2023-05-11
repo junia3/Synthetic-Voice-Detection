@@ -76,7 +76,9 @@ Check file ['baseline.ipynb'](./baseline.ipynb)
 ---
 
 # Evaluation metric
-
+<p align="center">
+    <img src="https://github.com/junia3/Synthetic-Speech-Detection/assets/79881119/15a3f70b-a848-4231-8bc2-a45281ddcbc4" width="800"> 
+</p>
 ### Equal Error Rate(EER) Metric
 > Audio spoofing is the act of attempting to deceive a system that relies on audio input, such as a speaker recognition system, by playing a recording of a legitimate user's voice instead of speaking in real-time. Detecting audio spoofing is important to prevent unauthorized access to sensitive information and protect against fraud. One way to evaluate the performance of an audio spoofing detection system is to use the EER metric. The EER is the point at which the false acceptance rate (FAR) and the false rejection rate (FRR) are equal.
 
