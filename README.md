@@ -118,7 +118,7 @@ python service.py
 
 ### Download pretrained model(to be updated)
 Be sure you have to 'download' best_model.pt(pretrained model) and locate it on the same directory as ```service.py```   
-The front-end web is running on [your local](http://127.0.0.1:5000/)
+The front-end web is running on [your local](http://127.0.0.1:5000/) URL.
 
 |Model|EER(%)|t-DCF|Acc(%)|Link|Model|EER(%)|t-DCF|Acc(%)|Link|
 |---|---|---|---|---|---|---|---|---|---|
