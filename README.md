@@ -71,7 +71,7 @@ Detailed implementation is written on [dataset page](./datasets).
 ---
 
 # Train baseline
-Check file ['baseline.ipynb'](./baseline.ipynb)
+Check file ['baseline.ipynb'](./baseline.ipynb).
 
 ---
 
