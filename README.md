@@ -118,12 +118,12 @@ python service.py
 Be sure you have to 'download' best_model.pt(pretrained model) and locate it on the same directory as ```service.py```   
 The front-end web is running on [your local](http://127.0.0.1:5000/)
 
-|Model|EER|t-DCF|Acc|Download Link|Model|EER|t-DCF|Acc|Download Link|
+|Model|EER|t-DCF|Acc|Link|Model|EER|t-DCF|Acc|Link|
 |---|---|---|---|---|---|---|---|---|---|
-|RN18/500/MFCC|8.53723|0.18130|76.4955|TBD|RN18/750/MFCC|-|-|-|TBD|
+|RN18/500/MFCC|8.53723|0.18130|76.4955|[download](https://drive.google.com/file/d/1xdQdljXnmL_XPoCiOl1hikdEGV5N3X-7/view?usp=share_link)|RN18/750/MFCC|-|-|-|TBD|
 |RN34/500/MFCC|-|-|-|TBD|RN34/750/MFCC|-|-|-|TBD|
 |RN50/500/MFCC|-|-|-|TBD|RN50/750/MFCC|-|-|-|TBD|
-|RN18/500/LFCC|6.74370|0.18492|67.7219|TBD|RN18/750/LFCC|-|-|-|TBD|
+|RN18/500/LFCC|6.74370|0.18492|67.7219|[download](https://drive.google.com/file/d/14dbuA_i70sSgEcjZwglyxTLZr0f8NiSm/view?usp=share_link)|RN18/750/LFCC|-|-|-|TBD|
 |RN34/500/LFCC|-|-|-|TBD|RN34/750/LFCC|-|-|-|TBD|
 |RN50/500/LFCC|-|-|-|TBD|RN50/750/LFCC|-|-|-|TBD|
 
