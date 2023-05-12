@@ -9,6 +9,50 @@ import string
 import random
 import os
 from glob import glob
+import matplotlib.pyplot as plt
+
+def create_randomname(length):
+    letters_set = string.ascii_letters
+    return ''.join(random.choice(letters_set) for i in range(length))
+
+def plot_waveform_w_pred(audio_path, prediction):
+    # Load the audio file
+    audio_data, sample_rate = sf.read(audio_path)
+
+    # If the audio has multiple channels, we'll just use the first channel for now
+    if audio_data.ndim > 1:
+        audio_data = audio_data[:, 0]
+
+    # Calculate the time array
+    duration = len(audio_data) / sample_rate
+    time_array = np.linspace(0, duration, len(audio_data))
+
+    # Normalize the audio data to the range [0, 1]
+    norm_audio_data = (audio_data - np.min(audio_data)) / (np.max(audio_data) - np.min(audio_data))
+    # Plot waveform
+    time_predarray = np.linspace(0, duration, len(prediction))
+    
+    _, ax1 = plt.subplots(figsize=(10, 5))
+    ax1.plot(time_array, norm_audio_data, color='#333333', alpha=0.2)
+    ax1.set_xlabel("Time (s)", fontsize=14, labelpad=10)
+    ax1.set_ylabel("Amplitude", fontsize=14, labelpad=10)
+    ax2 = ax1.twinx()
+    
+    # Assign colors to the line segments
+    mask = np.ma.masked_less(prediction, 0.5)
+    ax2.plot(time_predarray, prediction, color='#2D33F7', linewidth=2)
+    ax2.plot(time_predarray, mask, color='#fd3412', linewidth=2)
+    ax2.set_ylabel("Prediction", fontsize=14, labelpad=10)
+    ax2.set_ylim(0, 1.5)
+    
+    # Remove previous samples
+    for file in glob("static/graph/*.png"):
+        os.remove(file)
+    
+    # Save graph with random name
+    key=create_randomname(6)
+    plt.savefig(f"static/graph/result_{key}.png")
+    return key
 
 # Run augmentation code
 def voice_augment(audio_path, pitch, n_scale):
@@ -52,11 +96,10 @@ def run_inference(audio_path):
         infer = "This is a fake voice 😰"
     else:
         infer = "This is a real voice 🤗"
-    return infer
-
-def create_randomname(length):
-    letters_set = string.ascii_letters
-    return ''.join(random.choice(letters_set) for i in range(length))
+        
+    # Plot the waveform with the prediction
+    key = plot_waveform_w_pred(audio_path, torch.softmax(score, dim=1)[:, 1].cpu().numpy())
+    return infer, key
 
 app = Flask(__name__)
 
@@ -67,8 +110,9 @@ def home():
 @app.route('/upload-audio', methods=['POST'])
 def upload_audio():
     audio_path = request.form['audio-path']
-    inference_result = run_inference(audio_path=audio_path)
-    return jsonify({"result" : inference_result})
+    inference_result, key = run_inference(audio_path=audio_path)
+    graph_path = f"static/graph/result_{key}.png"
+    return jsonify({"result" : inference_result, "graph" : graph_path})
 
 @app.route('/apply-augmentation', methods=['POST'])
 def apply_augmentation():
@@ -89,7 +133,7 @@ def apply_augmentation():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--feature', type=int, help="feature length", default=750)
+    parser.add_argument('--feature', type=int, help="feature length", default=500)
     parser.add_argument("--transform", type=str, help="feature extraction method", default="lfcc")
     args = parser.parse_args()
     app.run(debug=True)
