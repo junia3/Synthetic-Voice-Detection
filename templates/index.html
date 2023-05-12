@@ -137,6 +137,15 @@
                 <h3 id="animate-charcter"></h3>
           </div>
         </div>
+        <br><br>
+        <div class="container-show" id="showbtn">
+            <button class="show" onclick="showImage()"> Show Result</button>
+        </div>
+        <div class="container-introduce" id="resultgraph">
+            <p align="center">
+                <img id="result-image" style="display:none" alt="Result Image" width="700">
+            </p>
+        </div>
     </div>
     <div class="card-container" id="letter">
         <div class="card card-1">
@@ -193,7 +202,6 @@
 
     </script>
     <script>
-        
         var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 1000, 128);
         linGrad.addColorStop(0, '#ff006c'); 
         linGrad.addColorStop(0.5, '#b621fe');
@@ -252,17 +260,26 @@
     </script>
     <script>
         var inferPath;
+        // function for upload and play audio
         function uploadAndPlay() {
             // Get each elements by ID
             const fileInput = document.getElementById("audio-file");
             const ogWaveform = document.getElementById("original");
             const augmentblock = document.getElementById("augmentation");
             const letter = document.getElementById('letter');
-            const result = document.getElementById('resultshow');
+            const result = document.getElementById('resultshow');   
             
             // Audio file
             const file = fileInput.files[0];
             const url = URL.createObjectURL(file);
+            const showbtn = document.getElementById('showbtn');
+            const image = document.getElementById('result-image');
+            const graph = document.getElementById('resultgraph');
+
+            // Display or hide elements
+            graph.style.display = "none";
+            image.style.display = "none";
+            showbtn.style.display = "none";
             ogWaveform.style.display = "block";
             augmentblock.style.display = "block";
             letter.style.display = "none";
@@ -270,6 +287,7 @@
             wavesurfer.load(url);
         }
 
+        // function that augment audio
         function augmentAudio() {
             const formData = new FormData();
             const augWaveform = document.getElementById("augmented");
@@ -277,7 +295,14 @@
             const loadingAug = document.getElementById('loading-aug');
             const letter = document.getElementById('letter');
             const result = document.getElementById('resultshow');
+            const showbtn = document.getElementById('showbtn');
+            const image = document.getElementById('result-image');
+            const graph = document.getElementById('resultgraph');
 
+            // display or hide elements
+            graph.style.display = "none";
+            image.style.display = "none";
+            showbtn.style.display = "none";
             formData.append('audio-file', document.getElementById('audio-file').files[0]);
             formData.append('pitch', document.getElementById('pitch').value);
             formData.append('noise', document.getElementById('noise').value);
@@ -304,6 +329,15 @@
             });
         }
 
+        function showImage() {
+            const image = document.getElementById('result-image');
+            const showbtn = document.getElementById('showbtn');
+            const graph = document.getElementById('resultgraph');
+            graph.style.display = "block";
+            image.style.display = "block";
+            showbtn.style.display = "none";
+        }
+
         function uploadAudio() {
             const formData = new FormData();
             formData.append('audio-path', inferPath);
@@ -313,6 +347,11 @@
             const letter = document.getElementById('letter');
             const inference = document.getElementById('try');
             const result = document.getElementById('resultshow');
+            const showbtn = document.getElementById('showbtn');
+            const image = document.getElementById('result-image');
+            const graph = document.getElementById('resultgraph');
+
+            graph.style.display = "none";
             loadingSpinner.style.display = 'block';
             showResult.style.display='none';
 
@@ -330,6 +369,8 @@
                 letter.style.display = 'block';
                 inference.style.display = "none";
                 result.style.display = "block";
+                showbtn.style.display = "block";
+                image.setAttribute('src', data.graph);
                 // Update the HTML content of the result div with the inference result
                 document.getElementById('animate-charcter').innerHTML = data.result;
             })
