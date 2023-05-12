@@ -73,6 +73,14 @@ Detailed implementation is written on [dataset page](./datasets).
 # Train baseline
 Check file ['baseline.ipynb'](./baseline.ipynb).
 
+Hello and welcome to the README for this project!
+
+If you are planning to use the baseline model for training, we strongly recommend that you train for more than 50 epochs. This is because in the initial training steps, the validation loss may be unstable and fluctuate quite a bit. However, with more epochs, the validation loss tends to stabilize and converge to a more meaningful value.
+
+So, to ensure that you get the best results from your training, we suggest training the baseline model for at least 50 epochs. Of course, you may need to adjust this number depending on the specifics of your project and dataset.
+
+Thank you for using our code, and we wish you the best of luck with your training!
+
 ---
 
 # Evaluation metric
