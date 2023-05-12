@@ -172,4 +172,13 @@ After inference is over, the result is presented on the page! It only takes few 
     <img src="https://user-images.githubusercontent.com/79881119/236757854-0eac19d2-6422-4e82-b3c2-4ba95ea568d2.png" width="700">    
 </p>
 
+And with "show result" button, you can check the specification details on model prediction!!
+
+<p align="center">
+    <img src="https://github.com/junia3/Synthetic-Voice-Detection/assets/79881119/1e18f9e3-09c7-4b6e-bfcb-b6809f630f02" width="600">
+    <img src="https://github.com/junia3/Synthetic-Voice-Detection/assets/79881119/c96b03fe-d79d-42b4-8d60-c114bfe9f725" width="600">
+</p>
+
+As the probability of "Prediction" approaches zero, the probability of it being a synthesized voice is low. In other words, on the graph, the blue color (values less than 0.5) represents the location predicted to be a real voice, while the red color (values greater than or equal to 0.5) represents the location predicted to be a spoof voice.
+
 P.S. We have a small gift for anyone who runs the web demo application on their own device! Give it a try and discover what it is.
