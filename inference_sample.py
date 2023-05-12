@@ -2,7 +2,6 @@ import torch
 import numpy as np
 from spafe.features import lfcc, bfcc, cqcc, mfcc, msrcc, ngcc, pncc, psrcc, rplp
 from spafe.utils.preprocessing import SlidingWindow
-import soundfile as sf
 
 # Code from dataset.py
 def zeropad(feature, f_len):
@@ -29,13 +28,12 @@ def rancut(feature, f_len):
     return feature[s_point:s_point+f_len, :]
 
 # Split feature in same dimension/+interval
-def sample_feature(audio, rate, transforms="lfcc"):
+def sample_feature(audio, rate, f_len, transforms="lfcc"):
     w_len = 0.02
     num_features = 20
     n_fft = 512
     norm = None
-    f_len = 300
-    interv = int(150*(rate/100))
+    interv = int((f_len/3)*(rate/100))
     padding = 'repeat'
     length = len(audio)
     # start pointer and end pointer for feature
@@ -166,8 +164,8 @@ def sample_feature(audio, rate, transforms="lfcc"):
 
     return torch.FloatTensor(torch.stack(features, dim=0))
 
-def test_sample(audio, rate, model_pth):
-    feature = sample_feature(audio, rate, "lfcc")
+def test_sample(audio, rate, model_pth, f_len=750, transforms='lfcc'):
+    feature = sample_feature(audio, rate, f_len=f_len, transforms=transforms)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     feature = feature.unsqueeze(1).to(device)
     model = torch.load(model_pth, map_location=device)
