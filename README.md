@@ -139,7 +139,7 @@ The front-end web is running on [your local URL](http://127.0.0.1:5000/).
 
 |Model|EER(%)|t-DCF|Acc(%)|Link|Model|EER(%)|t-DCF|Acc(%)|Link|
 |---|---|---|---|---|---|---|---|---|---|
-|RN18/500/LFCC|6.74370|0.18492|67.7219|[download](https://drive.google.com/file/d/14dbuA_i70sSgEcjZwglyxTLZr0f8NiSm/view?usp=share_link)|RN18/750/LFCC|-|-|-|[download](https://drive.google.com/file/d/1AvSWsj3aaPlo9V0fDQOTb6RJpqW8cqBl/view?usp=share_link)|
+|RN18/500/LFCC|6.74370|0.18492|67.7219|[download](https://drive.google.com/file/d/14dbuA_i70sSgEcjZwglyxTLZr0f8NiSm/view?usp=share_link)|RN18/750/LFCC|6.19861|0.13363|75.7644|[download](https://drive.google.com/file/d/1AvSWsj3aaPlo9V0fDQOTb6RJpqW8cqBl/view?usp=share_link)|
 |RN34/500/LFCC|-|-|-|TBD|RN34/750/LFCC|-|-|-|TBD|
 |RN50/500/LFCC|-|-|-|TBD|RN50/750/LFCC|-|-|-|TBD|
 
