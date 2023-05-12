@@ -108,6 +108,15 @@ div.container-try{
   clear: both;
 }
 
+div.container-show{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    clear: both;
+}
+
 div.container{
     width: 100%;
     margin: 0 auto;
@@ -138,6 +147,18 @@ div.container-introduce p{
 
 div.container-introduce:hover {
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+#resultshow{
+    display: none;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 70%;
 }
 
 div.audio-wrapper{
@@ -295,6 +316,25 @@ audio:focus {
   background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
 }
 
+.show {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border-color: #f4f4f4;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #333;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.show:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+  background-color: linear-gradient(55deg, #1fd1f9, #b621fe);
+  background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
+}
+
 .augment {
   padding: 10px 20px;
   border-radius: 12px;
@@ -323,7 +363,7 @@ audio:focus {
     width: 100%;
     margin: 0 auto;
     justify-content: center;
-    align-iterms: center;
+    align-items: center;
     height: 10vh;
     margin-bottom: 30px;
 }
@@ -337,7 +377,7 @@ audio:focus {
     width: 100%;
     margin: 0 auto;
     justify-content: center;
-    align-iterms: center;
+    align-items: center;
     height: 10vh;
 }
 
@@ -392,6 +432,7 @@ audio:focus {
 .card {
   background: #fff;
   border-radius: 2px;
+  align-items: center;
   display: inline-block;
   height: 95%;
   margin: 1rem;
@@ -513,6 +554,10 @@ audio:focus {
   background-repeat: no-repeat;
   background-size: 26vw;
   padding-bottom: 80px;
+}
+
+#resultgraph{
+  background-color: #fff;
 }
 
 .music{
