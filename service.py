@@ -1,3 +1,4 @@
+import argparse
 from flask import Flask, request, render_template, jsonify
 import soundfile as sf
 import torch
@@ -44,7 +45,7 @@ def voice_augment(audio_path, pitch, n_scale):
 # Run estimation code
 def run_inference(audio_path):
     audio, rate = sf.read(audio_path)
-    score = test_sample(audio, rate, "best_model.pt")[1]
+    score = test_sample(audio, rate, "best_model.pt", args.feature, args.transform)[1]
     _, prediction = torch.max(torch.softmax(score, dim=1), dim=1)
     ensemble = prediction.float().mean()
     if ensemble > 0.5:
@@ -87,4 +88,8 @@ def apply_augmentation():
     return jsonify({"result" : aug_path})
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--feature', type=int, help="feature length", default=750)
+    parser.add_argument("--transform", type=str, help="feature extraction method", default="lfcc")
+    args = parser.parse_args()
     app.run(debug=True)
