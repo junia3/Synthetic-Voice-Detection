@@ -113,8 +113,15 @@ pip install audiomentations
 ```
 
 ### Implemented with pytorch Flask 
+
+- Default setting(transform = LFCC, feature length = $750$) 
 ```bash
 python service.py
+```
+
+- Free setting(transform or feature length)
+```bash
+python service.py --feature 500 --transform cqcc
 ```
 
 ### Download pretrained model(to be updated)
