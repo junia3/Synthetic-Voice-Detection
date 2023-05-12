@@ -113,6 +113,7 @@ pip install audiomentations
 ```
 
 ### Implemented with pytorch Flask 
+You should match model specification(pre-trained model) with service setting.
 
 - Default setting(transform = LFCC, feature length = $750$) 
 ```bash
