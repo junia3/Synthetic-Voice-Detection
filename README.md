@@ -140,7 +140,7 @@ The front-end web is running on [your local URL](http://127.0.0.1:5000/).
 |Model|EER(%)|t-DCF|Acc(%)|Link|Model|EER(%)|t-DCF|Acc(%)|Link|
 |---|---|---|---|---|---|---|---|---|---|
 |RN18/500/LFCC|6.74370|0.18492|67.7219|[download](https://drive.google.com/file/d/14dbuA_i70sSgEcjZwglyxTLZr0f8NiSm/view?usp=share_link)|RN18/750/LFCC|6.19861|0.13363|75.7644|[download](https://drive.google.com/file/d/1AvSWsj3aaPlo9V0fDQOTb6RJpqW8cqBl/view?usp=share_link)|
-|RN34/500/LFCC|7.24569|0.18298|81.2626|[download](https://drive.google.com/file/d/12LMzvkdQA6P3TgaYwYRGWCKArwA1J0mQ/view?usp=share_link)|RN34/750/LFCC|-|-|-|TBD|
+|RN34/500/LFCC|7.24569|0.18298|81.2626|[download](https://drive.google.com/file/d/12LMzvkdQA6P3TgaYwYRGWCKArwA1J0mQ/view?usp=share_link)|RN34/750/LFCC|8.40194|0.17825|60.7552|[download](https://drive.google.com/file/d/1qpV1WhHUKx6Lq73LWIRCz8Kr1QsDNMQn/view?usp=share_link)|
 
 ### Upload audio sample
 
