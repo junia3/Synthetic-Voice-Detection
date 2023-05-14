@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/79881119/236769866-51c22da8-c1df-4fff-98f1-40993bc4f520.png" width="1000">
+    <img src="https://github.com/junia3/Synthetic-Voice-Detection/assets/79881119/4950c6ce-9a0f-4b48-ade5-c7dafb53d60e" width="1000">
 </p>
 <p align="center"; font-size=24px><b>Spoofing detection project in 2nd YAICON</b></p>
 
